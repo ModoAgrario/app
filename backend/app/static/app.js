@@ -2,7 +2,8 @@ const cardsContainer = document.getElementById("cardsContainer");
 
 const PRICE_ROWS = [
   {
-    product: "Harina de Trigo 000 Bls x 25 Kg.",
+    product: "Harina de Trigo 000",
+    presentation: "Bls x 25 Kg.",
     unit: "$/Bls",
     from: 8650,
     to: 9200,
@@ -10,7 +11,8 @@ const PRICE_ROWS = [
     updatedAt: "2026-02-25 15:20",
   },
   {
-    product: "Harina de Trigo 000 Big Bag",
+    product: "Harina de Trigo 000",
+    presentation: "Big Bag",
     unit: "$/Tn.",
     from: 299500,
     to: 323000,
@@ -18,7 +20,8 @@ const PRICE_ROWS = [
     updatedAt: "2026-02-25 15:20",
   },
   {
-    product: "Harina de Trigo 000 Granel Tolva",
+    product: "Harina de Trigo 000",
+    presentation: "Granel Tolva",
     unit: "$/Blks",
     from: 284000,
     to: 308500,
@@ -26,7 +29,8 @@ const PRICE_ROWS = [
     updatedAt: "2026-02-25 15:20",
   },
   {
-    product: "Harina de Trigo 0000 Bls x 25 Kg.",
+    product: "Harina de Trigo 0000",
+    presentation: "Bls x 25 Kg.",
     unit: "$/Bls",
     from: 9250,
     to: 9890,
@@ -34,7 +38,8 @@ const PRICE_ROWS = [
     updatedAt: "2026-02-25 15:20",
   },
   {
-    product: "Semolín Bls x 25 Kg.",
+    product: "Semolín",
+    presentation: "Bls x 25 Kg.",
     unit: "$/Bls",
     from: 10200,
     to: 11050,
@@ -42,7 +47,8 @@ const PRICE_ROWS = [
     updatedAt: "2026-02-25 15:20",
   },
   {
-    product: "Salvado Bls x 25 Kg.",
+    product: "Salvado",
+    presentation: "Bls x 25 Kg.",
     unit: "$/Bls",
     from: 4200,
     to: 4850,
@@ -50,7 +56,8 @@ const PRICE_ROWS = [
     updatedAt: "2026-02-25 15:20",
   },
   {
-    product: "Harina Tapera Bls x 25 Kg.",
+    product: "Harina Tapera",
+    presentation: "Bls x 25 Kg.",
     unit: "$/Bls",
     from: 7300,
     to: 8040,
@@ -60,19 +67,18 @@ const PRICE_ROWS = [
 ];
 
 function money(value) {
-  return new Intl.NumberFormat("es-AR", {
+  return `$ ${new Intl.NumberFormat("es-AR", {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
-  }).format(value);
+  }).format(value)}`;
 }
 
 function cardTemplate(item) {
   return `
     <article class="price-card">
-      <div class="title-row">
-        <h2 class="product">${item.product}</h2>
-        <span class="unit">${item.unit}</span>
-      </div>
+      <h2 class="product">${item.product}</h2>
+      <p class="presentation">${item.presentation}</p>
+      <p class="unit">${item.unit}</p>
 
       <div class="metrics">
         <div>

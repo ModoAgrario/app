@@ -4,8 +4,6 @@
   --text: #1f1f1f;
   --muted: #757575;
   --line: #e6e6e6;
-  --primary: #111;
-  --blue: #4f67c7;
 }
 
 * {
@@ -30,12 +28,27 @@ body {
   align-items: center;
   justify-content: space-between;
   margin-top: 10px;
+  gap: 10px;
 }
 
-h1 {
-  margin: 0;
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #0c0c0c;
+}
+
+.brand-mark {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+}
+
+.brand-text {
   font-size: 2rem;
   font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
 }
 
 .icon-btn {
@@ -66,22 +79,24 @@ h1 {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
-.title-row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 8px;
-}
-
 .product {
   margin: 0;
-  font-size: 1.34rem;
+  font-size: 1.2rem;
   font-weight: 600;
+  line-height: 1.15;
+}
+
+.presentation {
+  margin: 3px 0 0;
+  color: var(--muted);
+  font-size: 0.93rem;
 }
 
 .unit {
-  color: var(--muted);
+  margin: 8px 0 0;
+  color: #444;
   font-size: 0.9rem;
+  font-weight: 600;
 }
 
 .metrics {
@@ -99,8 +114,8 @@ h1 {
 
 .metric-value {
   margin: 2px 0 0;
-  font-size: 2rem;
-  font-weight: 600;
+  font-size: 1.7rem;
+  font-weight: 700;
   letter-spacing: -0.03em;
 }
 
@@ -108,7 +123,7 @@ h1 {
   margin: 8px 0 2px;
   color: #19984f;
   font-weight: 600;
-  font-size: 1.05rem;
+  font-size: 1.03rem;
 }
 
 .updated {
@@ -150,11 +165,11 @@ h1 {
 }
 
 @media (max-width: 380px) {
-  h1 {
-    font-size: 1.7rem;
+  .brand-text {
+    font-size: 1.6rem;
   }
 
   .metric-value {
-    font-size: 1.7rem;
+    font-size: 1.45rem;
   }
 }
