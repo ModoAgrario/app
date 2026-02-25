@@ -1,75 +1,98 @@
-const refreshBtn = document.getElementById("refreshBtn");
-const productEl = document.getElementById("product");
-const currencyEl = document.getElementById("currency");
+const cardsContainer = document.getElementById("cardsContainer");
 
-const priceEl = document.getElementById("price");
-const changeEl = document.getElementById("change");
-const metaEl = document.getElementById("meta");
+const PRICE_ROWS = [
+  {
+    product: "Harina de Trigo 000 Bls x 25 Kg.",
+    unit: "$/Bls",
+    from: 8650,
+    to: 9200,
+    changePct: 0.82,
+    updatedAt: "2026-02-25 15:20",
+  },
+  {
+    product: "Harina de Trigo 000 Big Bag",
+    unit: "$/Tn.",
+    from: 299500,
+    to: 323000,
+    changePct: 0.77,
+    updatedAt: "2026-02-25 15:20",
+  },
+  {
+    product: "Harina de Trigo 000 Granel Tolva",
+    unit: "$/Blks",
+    from: 284000,
+    to: 308500,
+    changePct: 0.65,
+    updatedAt: "2026-02-25 15:20",
+  },
+  {
+    product: "Harina de Trigo 0000 Bls x 25 Kg.",
+    unit: "$/Bls",
+    from: 9250,
+    to: 9890,
+    changePct: 0.91,
+    updatedAt: "2026-02-25 15:20",
+  },
+  {
+    product: "Semolín Bls x 25 Kg.",
+    unit: "$/Bls",
+    from: 10200,
+    to: 11050,
+    changePct: 0.58,
+    updatedAt: "2026-02-25 15:20",
+  },
+  {
+    product: "Salvado Bls x 25 Kg.",
+    unit: "$/Bls",
+    from: 4200,
+    to: 4850,
+    changePct: 1.2,
+    updatedAt: "2026-02-25 15:20",
+  },
+  {
+    product: "Harina Tapera Bls x 25 Kg.",
+    unit: "$/Bls",
+    from: 7300,
+    to: 8040,
+    changePct: 0.54,
+    updatedAt: "2026-02-25 15:20",
+  },
+];
 
-const MOCK_QUOTES = {
-  "harina_000-USD": [290.0, 297.0, 301.0],
-  "harina_0000-USD": [305.0, 307.0, 310.0],
-  "harina_integral-ARS": [315000.0, 319500.0, 321000.0],
-  "harina_000-ARS": [280000.0, 286000.0, 289500.0],
-};
-
-function formatMoney(value, currency) {
+function money(value) {
   return new Intl.NumberFormat("es-AR", {
-    style: "currency",
-    currency,
-    maximumFractionDigits: currency === "ARS" ? 0 : 2,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
   }).format(value);
 }
 
-function getMockSummary(product, currency) {
-  const key = `${product}-${currency}`;
-  const series = MOCK_QUOTES[key];
-  if (!series || series.length === 0) {
-    return null;
-  }
+function cardTemplate(item) {
+  return `
+    <article class="price-card">
+      <div class="title-row">
+        <h2 class="product">${item.product}</h2>
+        <span class="unit">${item.unit}</span>
+      </div>
 
-  const latest = series[series.length - 1];
-  const previous = series.length > 1 ? series[series.length - 2] : latest;
-  const dayChangePct = previous === 0 ? 0 : ((latest - previous) / previous) * 100;
+      <div class="metrics">
+        <div>
+          <p class="metric-label">Desde</p>
+          <p class="metric-value">${money(item.from)}</p>
+        </div>
+        <div>
+          <p class="metric-label">Hasta</p>
+          <p class="metric-value">${money(item.to)}</p>
+        </div>
+      </div>
 
-  return {
-    latest_price_per_ton: latest,
-    day_change_pct: Number(dayChangePct.toFixed(2)),
-    currency,
-    source: "mock_frontend",
-  };
+      <p class="var">▲ ${item.changePct.toFixed(2).replace(".", ",")}%</p>
+      <p class="updated">Última actualización: ${item.updatedAt}</p>
+    </article>
+  `;
 }
 
-function renderQuote(data) {
-  priceEl.textContent = `${formatMoney(data.latest_price_per_ton, data.currency)} / tn`;
-  changeEl.textContent = `Variación diaria: ${data.day_change_pct}%`;
-  metaEl.textContent = `Fuente: ${data.source}`;
+function render() {
+  cardsContainer.innerHTML = PRICE_ROWS.map(cardTemplate).join("");
 }
 
-async function loadQuote() {
-  const product = productEl.value;
-  const currency = currencyEl.value;
-
-  try {
-    const response = await fetch(`/quotes/latest?product=${product}&currency=${currency}`);
-    if (response.ok) {
-      const data = await response.json();
-      renderQuote(data);
-      return;
-    }
-  } catch (_error) {
-    // Si no está disponible la API, hacemos fallback a mockdata local.
-  }
-
-  const mockData = getMockSummary(product, currency);
-  if (mockData) {
-    renderQuote(mockData);
-  } else {
-    priceEl.textContent = "Sin datos";
-    changeEl.textContent = "Variación diaria: --";
-    metaEl.textContent = "Fuente: --";
-  }
-}
-
-refreshBtn.addEventListener("click", loadQuote);
-window.addEventListener("DOMContentLoaded", loadQuote);
+window.addEventListener("DOMContentLoaded", render);

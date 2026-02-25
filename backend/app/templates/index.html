@@ -13,41 +13,23 @@
     <link rel="stylesheet" href="/static/styles.css" />
   </head>
   <body>
-    <main class="container">
-      <header class="header">
-        <h1>Harina Quote</h1>
-        <p class="subtitle">Cotización de harina de trigo en tiempo casi real.</p>
+    <main class="app-shell">
+      <header class="topbar">
+        <h1>Cotización Harinas Hoy</h1>
+        <button class="icon-btn" aria-label="Filtros">⚙</button>
       </header>
 
-      <section class="controls card">
-        <label>
-          Producto
-          <select id="product">
-            <option value="harina_000">Harina 000</option>
-            <option value="harina_0000">Harina 0000</option>
-            <option value="harina_integral">Harina integral</option>
-          </select>
-        </label>
-        <label>
-          Moneda
-          <select id="currency">
-            <option value="USD">USD</option>
-            <option value="ARS">ARS</option>
-          </select>
-        </label>
-        <button id="refreshBtn">Actualizar</button>
+      <p class="hint">Precios desde / hasta por presentación</p>
+
+      <section id="cardsContainer" class="cards"></section>
+
+      <section class="promo-strip">
+        <span>💡 Espacio para promo premium sin publicidad.</span>
+        <button>Ver planes</button>
       </section>
 
-      <section class="quote card" id="quoteCard">
-        <p class="label">Última cotización</p>
-        <h2 id="price">--</h2>
-        <p id="change">Variación diaria: --</p>
-        <p id="meta">Fuente: --</p>
-      </section>
-
-      <section class="card">
-        <p class="label">Espacio publicitario (próximamente)</p>
-        <div class="ad-slot">Banner 320x100</div>
+      <section class="bottom-banner">
+        <p>Banner publicitario 320x100 (reservado)</p>
       </section>
     </main>
 
