@@ -25,13 +25,16 @@ def test_latest_quote_ok() -> None:
     assert payload["source"] == "mock_seed"
 
 
-def test_latest_quote_not_found() -> None:
+def test_latest_quote_uses_fallback_mockdata() -> None:
     response = client.get(
         "/quotes/latest",
         params={"product": "harina_0000", "currency": "USD"},
     )
 
-    assert response.status_code == 404
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["latest_price_per_ton"] == 310.0
+    assert payload["source"] == "mock_fallback"
 
 
 def test_sources_endpoint_lists_integrations() -> None:

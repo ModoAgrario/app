@@ -55,3 +55,6 @@ uvicorn app.main:app --reload
 pip install pytest
 PYTHONPATH=. pytest -q
 ```
+
+## Nota de fallback UI
+- El frontend incluye `mockdata` local en `static/app.js` para evitar pantalla en 404 si el endpoint `/quotes/latest` no está disponible en una preview estática.

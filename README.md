@@ -24,3 +24,7 @@ Ahora el proyecto quedó con arquitectura más sólida para avanzar hacia app iO
 3. Scheduler para scraping periódico + validación de calidad de datos.
 4. Alertas push por variación de precio.
 5. Módulo admin para alta/corrección de cotizaciones.
+
+
+## UX sin 404 en preview
+- La UI usa mockdata local para mostrar valores aunque `/quotes/latest` no esté disponible en previews estáticas.
