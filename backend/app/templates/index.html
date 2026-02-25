@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div class="brand" aria-label="Modo Agrario">
+          <img src="/static/modoagrario-logo.svg" alt="Modo Agrario" class="brand-logo" />
+        </div>
+        <button class="icon-btn" aria-label="Filtros">⚙</button>
+      </header>
+
+      <p class="hint">Precios desde / hasta por presentación</p>
+
+      <section id="cardsContainer" class="cards"></section>
+
+      <section class="promo-strip">
+        <span>💡 Espacio para promo premium sin publicidad.</span>
+        <button>Ver planes</button>
+      </section>
+
+      <section class="bottom-banner">
+        <p>Banner publicitario 320x100 (reservado)</p>
+      </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
