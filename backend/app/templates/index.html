@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="header">
+        <h1>Harina Quote</h1>
+        <p class="subtitle">Cotización de harina de trigo en tiempo casi real.</p>
+      </header>
+
+      <section class="controls card">
+        <label>
+          Producto
+          <select id="product">
+            <option value="harina_000">Harina 000</option>
+            <option value="harina_0000">Harina 0000</option>
+            <option value="harina_integral">Harina integral</option>
+          </select>
+        </label>
+        <label>
+          Moneda
+          <select id="currency">
+            <option value="USD">USD</option>
+            <option value="ARS">ARS</option>
+          </select>
+        </label>
+        <button id="refreshBtn">Actualizar</button>
+      </section>
+
+      <section class="quote card" id="quoteCard">
+        <p class="label">Última cotización</p>
+        <h2 id="price">--</h2>
+        <p id="change">Variación diaria: --</p>
+        <p id="meta">Fuente: --</p>
+      </section>
+
+      <section class="card">
+        <p class="label">Espacio publicitario (próximamente)</p>
+        <div class="ad-slot">Banner 320x100</div>
+      </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
